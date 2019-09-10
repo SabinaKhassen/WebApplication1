@@ -14,8 +14,8 @@
     @foreach (var item in Model)
     {
         {
-            Html.Partial("AuthorListRecord", item);
-            @*<tr>
+            //Html.Partial("AuthorListRecord", item);
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.AuthorName)
                 </td>
@@ -29,7 +29,7 @@
                         <input type="submit" value="Delete" class="btn btn-default" />
                     }
                 </td>
-            </tr>*@
+            </tr>
         }
             @*<tr>
                     <td>
