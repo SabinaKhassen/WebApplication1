@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -10,6 +11,8 @@ namespace WebApplication1.Controllers
     public class AuthorController : Controller
     {
         // GET: Author
+
+        [HandleError]
         public ActionResult Index()
         {
             var model = AuthorRepo.List();
@@ -34,10 +37,10 @@ namespace WebApplication1.Controllers
 
         // POST: Author/Create
         [HttpPost]
+        [FilterHelper]
         public ActionResult Create(Author collection)
         {
-            try
-            {
+            ReturnEx(collection.Id);
                 // TODO: Add insert logic here
                 AuthorRepo.Create(collection);
                 if (Request.IsAjaxRequest())
@@ -46,11 +49,12 @@ namespace WebApplication1.Controllers
                 }
 
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        }
+
+        private void ReturnEx(int id)
+        {
+            int zero = 0;
+            var temp = id / zero;
         }
 
         // GET: Author/Edit/5
